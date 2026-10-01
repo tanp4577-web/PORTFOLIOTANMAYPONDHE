@@ -20,8 +20,6 @@ const assets = [
     { path: 'public/images/projects/project-06.png', width: 1200, height: 800, text: 'Project 06', bg: '#881337', fg: '#fb7185' },
 ];
 
-assets.forEach(asset => {
-    const svg = createSvgPlaceholder(asset.width, asset.height, asset.text, asset.bg, asset.fg);
-    fs.writeFileSync(asset.path, svg);
-    console.log(`Created placeholder: ${asset.path}`);
-});
+// Placeholder script disabled - real binary PNG assets are present in public/images
+console.log('Real binary PNG assets are present in public/images.');
+
