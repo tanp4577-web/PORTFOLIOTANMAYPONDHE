@@ -1,12 +1,18 @@
 "use client";
 
 import { useRef, useState } from "react";
-import Image from "next/image";
 import { Project } from "@/lib/projects";
 
 interface ProjectCardProps {
     project: Project;
 }
+
+const gradientMap: Record<string, string> = {
+    "refactor-guard": "linear-gradient(135deg, #0c111d 0%, #1e3a5f 50%, #38bdf8 100%)",
+    "placement-prep": "linear-gradient(135deg, #1e1b4b 0%, #4c1d95 50%, #a855f7 100%)",
+};
+
+const defaultGradient = "linear-gradient(135deg, #0f172a 0%, #334155 50%, #6366f1 100%)";
 
 export default function ProjectCard({ project }: ProjectCardProps) {
     const cardRef = useRef<HTMLDivElement>(null);
@@ -15,24 +21,16 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     const [isHovered, setIsHovered] = useState(false);
 
     const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-        // Disable 3D tilt on touch or pointer without hover capability
         if (window.matchMedia("(hover: none)").matches) return;
-
         const card = cardRef.current;
         if (!card) return;
-
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-
-        // Calculate relative coordinates (-0.5 to 0.5)
         const normX = x / rect.width - 0.5;
         const normY = y / rect.height - 0.5;
-
-        // Calculate rotation angles
         const rotateY = normX * 14;
         const rotateX = -normY * 14;
-
         setTransformStyle(`perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-8px)`);
         setSheenPosition({ x: (x / rect.width) * 100, y: (y / rect.height) * 100 });
     };
@@ -46,6 +44,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         setIsHovered(false);
         setTransformStyle("perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)");
     };
+
+    const gradient = gradientMap[project.id] || defaultGradient;
 
     return (
         <div
@@ -70,14 +70,32 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             )}
 
             <div>
-                {/* Image Thumbnail */}
-                <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden mb-6 bg-slate-100 border border-slate-100">
-                    <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                {/* Gradient Thumbnail (No Image) */}
+                <div
+                    className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden mb-6 border border-slate-100 flex items-center justify-center"
+                    style={{ background: gradient }}
+                >
+                    {/* Decorative Grid Overlay */}
+                    <div
+                        className="absolute inset-0 opacity-10"
+                        style={{
+                            backgroundSize: "30px 30px",
+                            backgroundImage:
+                                "linear-gradient(to right, rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.4) 1px, transparent 1px)",
+                        }}
                     />
+                    {/* Floating Glow */}
+                    <div className="absolute top-1/4 left-1/3 w-32 h-32 rounded-full blur-2xl opacity-40 bg-white/20" />
+
+                    {/* Project Initials */}
+                    <span className="relative z-10 font-bold text-4xl md:text-5xl text-white/90 tracking-tight select-none">
+                        {project.title.split(" ").map(w => w[0]).join("")}
+                    </span>
+
+                    {/* Bottom Mono Label */}
+                    <span className="absolute bottom-3 right-4 font-mono text-[10px] uppercase tracking-widest text-white/50 z-10">
+                        {project.tags[0]}
+                    </span>
                 </div>
 
                 {/* Card Title & Description */}

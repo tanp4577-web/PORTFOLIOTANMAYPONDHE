@@ -4,7 +4,6 @@ import CursorMask from "@/components/cursor-mask";
 import ProjectCard from "@/components/project-card";
 import ScrollReveal from "@/components/scroll-reveal";
 import { ownerDetails, projectsData } from "@/lib/projects";
-import Image from "next/image";
 
 const floatingBadges = [
     { name: "Python", class: "top-6 left-6 animate-float-slow" },
@@ -18,18 +17,22 @@ const floatingBadges = [
 const skillCategories = [
     {
         title: "AI & Automation",
+        icon: "🧠",
         skills: ["AI Agents & Multi-Agent Pipelines", "LLM Fine-tuning & Prompting", "LangChain & LlamaIndex", "Web Speech & Audio AI"],
     },
     {
         title: "Frontend Engineering",
+        icon: "⚡",
         skills: ["React 18 / Next.js 14 App Router", "TypeScript", "Tailwind CSS & Modern Styling", "GSAP & Motion Engineering"],
     },
     {
         title: "Backend & Systems",
+        icon: "🔧",
         skills: ["Node.js & Express", "Python & FastAPI", "RESTful & GraphQL APIs", "PostgreSQL & Supabase"],
     },
     {
         title: "Tools & Ecosystem",
+        icon: "🚀",
         skills: ["Git & GitHub Workflow", "Vercel & Cloud Deployment", "Docker Containerization", "Jest & Unit Testing"],
     },
 ];
@@ -40,24 +43,28 @@ const servicesList = [
         description: "Custom AI coding agents, refactoring tools, and multi-agent pipelines tailored for complex developer workflows.",
         bullets: ["Multi-file code refactoring", "Automated code review agents", "Custom LLM integrations", "Task-oriented agents"],
         tags: ["Python", "TypeScript", "LLMs", "LangChain"],
+        icon: "🤖",
     },
     {
         title: "Full-Stack Web Applications",
         description: "High-performance, scalable web apps built from scratch with modern frameworks and resilient backend APIs.",
         bullets: ["Next.js 14 App Router", "Type-safe database design", "Authentication & Security", "Serverless Architecture"],
         tags: ["Next.js", "TypeScript", "Node.js", "Supabase"],
+        icon: "🌐",
     },
     {
         title: "SaaS Platforms & AI Tools",
         description: "End-to-end SaaS products with rich dashboards, real-time analytics, and interactive AI capabilities.",
         bullets: ["Placement & interview trackers", "Interactive audio/video AI", "Payment & auth integrations", "Responsive dashboards"],
         tags: ["React", "Tailwind CSS", "Web Speech API", "FastAPI"],
+        icon: "📊",
     },
     {
         title: "High-Performance Landing Pages",
         description: "Cinematic, motion-rich landing pages engineered to captivate users and convert visitors into clients.",
         bullets: ["Liquid cursor & motion effects", "60 FPS GSAP animations", "Lenis smooth scrolling", "100% Mobile responsiveness"],
         tags: ["GSAP", "Lenis", "Tailwind CSS", "SEO"],
+        icon: "✨",
     },
 ];
 
@@ -82,15 +89,30 @@ export default function GlassHero() {
                     </ScrollReveal>
 
                     <ScrollReveal className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-                        {/* Developer Portrait Card */}
-                        <div className="reveal md:col-span-5 relative aspect-[4/5] rounded-3xl overflow-hidden shadow-xl border border-slate-200">
-                            <Image
-                                src="/images/Base_image_desktop.png"
-                                alt={ownerDetails.name}
-                                fill
-                                className="object-cover"
+                        {/* Abstract Identity Card (CSS Only - No Image) */}
+                        <div className="reveal md:col-span-5 relative aspect-[4/5] rounded-3xl overflow-hidden shadow-xl border border-slate-200" style={{ background: "linear-gradient(135deg, #0c111d 0%, #1e1b4b 50%, #6366f1 100%)" }}>
+                            {/* Decorative Grid */}
+                            <div
+                                className="absolute inset-0 opacity-10"
+                                style={{
+                                    backgroundSize: "40px 40px",
+                                    backgroundImage:
+                                        "linear-gradient(to right, rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.3) 1px, transparent 1px)",
+                                }}
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent flex flex-col justify-end p-6 text-white">
+                            {/* Glow Orbs */}
+                            <div className="absolute top-1/4 right-1/4 w-40 h-40 rounded-full blur-3xl opacity-40 bg-indigo-500" />
+                            <div className="absolute bottom-1/3 left-1/3 w-32 h-32 rounded-full blur-3xl opacity-30 bg-cyan-400" />
+
+                            {/* Large Initials */}
+                            <div className="absolute inset-0 flex items-center justify-center">
+                                <span className="text-[8rem] md:text-[10rem] font-bold text-white/10 tracking-tighter select-none">
+                                    TP
+                                </span>
+                            </div>
+
+                            {/* Info Overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-6 text-white">
                                 <h3 className="text-2xl font-bold">{ownerDetails.name}</h3>
                                 <p className="font-mono text-xs text-slate-300">{ownerDetails.title}</p>
                             </div>
@@ -156,15 +178,28 @@ export default function GlassHero() {
                     </ScrollReveal>
 
                     <ScrollReveal className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                        {/* Left Illustration Box with Floating Badges */}
-                        <div className="reveal lg:col-span-5 relative min-h-[380px] sm:min-h-[480px] rounded-3xl bg-slate-50 border border-slate-200/80 bg-grid-pattern flex items-center justify-center p-6 overflow-hidden">
-                            <div className="relative w-64 h-64 sm:w-80 sm:h-80">
-                                <Image
-                                    src="/images/tech-developer-illustration-transparent.png"
-                                    alt="Tech Developer Illustration"
-                                    fill
-                                    className="object-contain"
-                                />
+                        {/* Left Abstract Graphic Box with Floating Badges (CSS Only) */}
+                        <div className="reveal lg:col-span-5 relative min-h-[380px] sm:min-h-[480px] rounded-3xl overflow-hidden border border-slate-200/80 flex items-center justify-center p-6" style={{ background: "linear-gradient(160deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%)" }}>
+                            {/* Grid Pattern */}
+                            <div
+                                className="absolute inset-0 opacity-[0.06]"
+                                style={{
+                                    backgroundSize: "40px 40px",
+                                    backgroundImage:
+                                        "linear-gradient(to right, rgba(15,23,42,0.4) 1px, transparent 1px), linear-gradient(to bottom, rgba(15,23,42,0.4) 1px, transparent 1px)",
+                                }}
+                            />
+
+                            {/* Central Abstract Graphic */}
+                            <div className="relative flex items-center justify-center">
+                                {/* Spinning Ring */}
+                                <div className="absolute w-48 h-48 sm:w-64 sm:h-64 rounded-full border-2 border-dashed border-indigo-300/50 animate-spin" style={{ animationDuration: "30s" }} />
+                                <div className="absolute w-36 h-36 sm:w-48 sm:h-48 rounded-full border border-cyan-300/40 animate-spin" style={{ animationDuration: "20s", animationDirection: "reverse" }} />
+
+                                {/* Core Orb */}
+                                <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full flex items-center justify-center shadow-lg" style={{ background: "linear-gradient(135deg, #6366f1, #38bdf8)" }}>
+                                    <span className="text-3xl sm:text-4xl">⚡</span>
+                                </div>
                             </div>
 
                             {/* 6 Floating Badges */}
@@ -183,7 +218,7 @@ export default function GlassHero() {
                             {skillCategories.map((cat) => (
                                 <div key={cat.title} className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-sm">
                                     <h3 className="font-bold text-lg text-ink mb-4 pb-2 border-b border-slate-100 flex items-center gap-2">
-                                        <span className="w-2 h-2 rounded-full bg-accent" />
+                                        <span className="text-lg">{cat.icon}</span>
                                         {cat.title}
                                     </h3>
                                     <ul className="space-y-2.5">
@@ -222,10 +257,15 @@ export default function GlassHero() {
                                 className="reveal p-8 rounded-3xl bg-white border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between"
                             >
                                 <div>
-                                    <span className="font-mono text-xs font-bold text-accent mb-2 block">
-                                        {"0" + (idx + 1) + " // SERVICE"}
-                                    </span>
-                                    <h3 className="text-2xl font-bold text-ink mb-3">{service.title}</h3>
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <span className="text-3xl">{service.icon}</span>
+                                        <div>
+                                            <span className="font-mono text-xs font-bold text-accent mb-1 block">
+                                                {"0" + (idx + 1) + " // SERVICE"}
+                                            </span>
+                                            <h3 className="text-2xl font-bold text-ink">{service.title}</h3>
+                                        </div>
+                                    </div>
                                     <p className="text-slate-600 text-sm md:text-base leading-relaxed mb-6">
                                         {service.description}
                                     </p>
@@ -265,7 +305,7 @@ export default function GlassHero() {
                                 Got a project in mind?
                             </p>
                             <h2 className="text-4xl md:text-6xl font-bold tracking-tight">
-                                Let’s build something extraordinary.
+                                Let&apos;s build something extraordinary.
                             </h2>
                         </div>
                         <a
